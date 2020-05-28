@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+         canvas { border: 1px solid black; }
+
+      </style>
+</head>
+<body onload="draw([
+[0,   0,   0,   0,   0,   0,   1,   0,   0,   1],
+[0,   0,   1,   0,   0,   0,   0,   0,   0,   0],
+[0,   0,   0,   0,   0,   0,   0,   0,   1,   0],
+[0,   0,   0,   0,   1,   1,   0,   0,   1,   0],
+[0,   0,   0,   0,   1,   0,   0,   0,   0,   0],
+[0,   0,   0,   0,   0,   0,   1,   0,   0,   0],
+[0,   0,   0,   0,   0,   0,   1,   0,   1,   0],
+[0,   0,   1,   0,   0,   0,   0,   0,   0,   0],
+[0,   0,   0,   1,   1,   0,   0,   0,   1,   0],
+[0,   0,   0,   0,   1,   0,   0,   1,   0,   0],
+]);">
+
+    <canvas id='canvas'> </canvas>
+    <script>
+        'use strict';
+
+function draw(matrix) {
+    var canvas = document.getElementById('canvas');
+    canvas.width = 800;
+    canvas.height = 500;
+    if (canvas.getContext) {
+var ctx = canvas.getContext('2d');
+ctx.font = '8px Tahoma';
+var point = [[50,50], [150,50], [250,50], [350,50], [450,50], [130,150], [175,225], [250,325], [370,150], [325,225] ];
+var couple = [];
+
+/*for ( let i = 0; i < matrix.length; i++) {
+    for ( let j = 0; j <11; j++) {
+        if (matrix[i][j] ===1) {
+            matrix[j][i] = 1;
+        }
+    }
+}*/
+
+function canvas_arrow(fromX, fromY, toX, toY, pointFrom, pointTo) {
+    
+    const arrowSize = 8;
+    let dx = toX - fromX;
+    let dy = toY - fromY;
+    ctx.beginPath();
+    ctx.lineWidth = 1;
+    if (fromX == 65) {
+        fromX = 50;
+        fromY = 65;
+    }
+    if (toX == 175) {
+        toX = 160;
+        toY = 225;
+    };
+    ctx.moveTo(fromX, fromY);
+    const angle = Math.atan2(dy, dx);
+
+        ctx.lineTo(toX, toY);
+    ctx.lineTo(
+        toX - arrowSize * Math.cos(angle - Math.PI / 6),
+        toY - arrowSize * Math.sin(angle - Math.PI / 6));
+    ctx.moveTo(toX, toY);
+    ctx.lineTo(
+        toX - arrowSize * Math.cos(angle + Math.PI / 6),
+        toY - arrowSize * Math.sin(angle + Math.PI / 6));
+    ctx.stroke();
+}
+
+
+//Create couples which have connection
+for ( let i = 0; i < matrix.length; i++) {
+    for ( let j = 0; j < 10; j++) {
+        if ( matrix[i][j] === 1 ) {
+            couple.push([i+1, j+1]);
+        } 
+    }
+}
+
+//Create cycle to draw circles, coords in mass(point)
+function drawCircle(i) {
+    ctx.beginPath();
+    ctx.arc(point[i][0], point[i][1], 15, 0, Math.PI*2, true);
+    ctx.closePath();
+    if (i < 9) {
+    ctx.fillText(`${i+1}`, point[i][0]-2, point[i][1]+3);
+    }
+    else {
+        ctx.fillText(`${i+1}`, point[i][0]-4, point[i][1]+3);
+    }
+    if (i !== point.length - 1) {
+    ctx.moveTo(point[i+1][0]+15, point[i+1][1]);
+    }
+    ctx.stroke();
+}
+
+let output = [];
+
+
+let input = [];
+for ( let i = 0; i < 10; i++) {
+    output[i] = {
+        right : [ point[i][0]+15, point[i][1] ],
+        left : [ point[i][0]-15, point[i][1] ]
+    };
+    input[i] = {
+        top : [ point[i][0], point[i][1] - 15],
+        bottom : [ point[i][0], point[i][1] + 15]
+    };
+}
+
+
+console.log(matrix);
+
+
+//Connection
+    for ( let i = 0; i < couple.length; i++ ) {
+        let fromX;
+        let fromY;
+        let toX;
+        let toY;
+
+        if (couple[i][0] === couple[i][1]) {
+            ctx.beginPath();
+            ctx.arc(point[couple[i][0] - 1][0] + 16, point[couple[i][0] - 1][1] - 16, 7, 0, 2*Math.PI)
+            ctx.stroke();
+        }
+        else if (point[couple[i][0] - 1][0] < point[couple[i][1] - 1][0]) {
+           fromX = output[couple[i][0]-1].right[0];
+           fromY = output[couple[i][0]-1].right[1];
+            if (point[couple[i][0] - 1][1] < point[couple[i][1] - 1][1]) {
+            toX = input[couple[i][1]-1].top[0]; 
+            toY = input[couple[i][1]-1].top[1];
+            } else {
+                toX = input[couple[i][1]-1].bottom[0];
+                toY = input[couple[i][1]-1].bottom[1];
+            }
+        } else {
+            fromX = output[couple[i][0]-1].left[0]; 
+            fromY = output[couple[i][0]-1].left[1];
+            if (point[couple[i][0] - 1][1] < point[couple[i][1] - 1][1]) {
+                toX = input[couple[i][1]-1].top[0]; 
+                toY = input[couple[i][1]-1].top[1];
+            } else {
+                toX = input[couple[i][1]-1].bottom[0];
+                toY = input[couple[i][1]-1].bottom[1];
+            }
+        }
+canvas_arrow(fromX, fromY, toX, toY, couple[i][0], couple[i][1]);
+    }
+    for (let i = 0; i < point.length; i++) {
+        drawCircle(i)
+    }
+    }
+}
+
+    </script>
+
+    
+</body>
+</html>
