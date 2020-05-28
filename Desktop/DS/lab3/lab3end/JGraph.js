@@ -9,7 +9,7 @@ const Graph = function(ctx, adjM, directed = false, radius = 10) {
 Graph.prototype.connect = function(v1, v2, directed = false, double = false) {
   this.ctx.beginPath()
   if (v1 === v2) {
-    this.ctx.arc(v1.x, v1.y - 2 * this.radius, this.radius + 1, 0, 2 * Math.PI);
+    this.ctx.arc(v1.x, v1.y + 28, this.radius - 13, 0, 2 * Math.PI);
     this.ctx.stroke();
     if (directed) {
       v1.out++;
@@ -144,34 +144,17 @@ Graph.prototype.draw = function() {
   }
 };
 
-
-Graph.prototype.triangle = function() {
-  for (let i = 1; i <= 6; i++) {
-    let x = 200 * i;
-    let y = 50;
-    if (i == 3) {
-      x = 300;
-      y = 300;
-    }
-    if (i == 4) {
-      x = 500;
-      y = 300;
-    };
-    if( i == 5) {
-      x = 400;
-      y = 600;
-    };
-    if( i == 6) {
-      x = 600;
-      y = 50;
-    };
-
+Graph.prototype.circle = function(radius, xc, yc) {
+  for (let i = 1; i <= this.adjM.length; i++) {
+    const delta = 2 * Math.PI / this.adjM.length;
+    const x = radius * Math.cos(i * delta) + xc;
+    const y = radius * Math.sin(i * delta) + yc;
     this.vertex(x, y, i);
   }
   this.draw();
 };
 
-Graph.prototype.triangle1 = function() {
+Graph.prototype.triangle = function() {
   for (let i = 1; i <= 10; i++) {
     let x = 100 * i;
     let y = 50;
@@ -195,16 +178,6 @@ Graph.prototype.triangle1 = function() {
       x = 400;
       y = 300;
     };
-    this.vertex(x, y, i);
-  }
-  this.draw();
-};
-
-Graph.prototype.circle = function(radius, xc, yc) {
-  for (let i = 1; i <= this.adjM.length; i++) {
-    const delta = 2 * Math.PI / this.adjM.length;
-    const x = radius * Math.cos(i * delta) + xc;
-    const y = radius * Math.sin(i * delta) + yc;
     this.vertex(x, y, i);
   }
   this.draw();
@@ -329,36 +302,10 @@ const transpose = m => {
   return res;
 };
 
-const product_m = (m1, m2) => {
+const strng_m = (m1, m2) => {
   let res = m1.map(arr => [...arr]);
   for (let i = 0; i < m1.length; i++)
     for (let j = 0; j < m1.length; j++)
       res[i][j] = m1[i][j] && m2[i][j];
   return res;
-};
-
-const BFS = (G, a) => {
-  const BFS_arr = new Array(G.adjM.length).fill(0);
-  const BFS_tree = [];
-  const stack = [];
-  let v, k = 1;
-
-  BFS_arr[--a] = 1;
-  stack.push(a);
-  while (stack.length !== 0) {
-    v = stack.pop();
-    BFS_tree[v] = [];
-    for (let i = 0; i < G.adjM.length; i++) {
-      if (G.adjM[v][i] === 1 && BFS_arr[i] === 0) {
-        BFS_tree[v][i] = 1;
-        k++;
-        BFS_arr[i] = k;
-        stack.push(i);
-      }
-    }
-  }
-  return {
-    tree: BFS_tree,
-    arr: BFS_arr,
-  };
 };
