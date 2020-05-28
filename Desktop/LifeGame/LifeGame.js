@@ -137,3 +137,4 @@ class LifeGame {
         return this.map[y][x] = value
     }
 }
+
