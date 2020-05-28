@@ -86,7 +86,7 @@ class LifeGame {
         }
     }
 
-    reviveRandomVirus (n = 1) {
+    /*reviveRandomVirus (n = 1) {
         const freeFields = []
 
         for (let y = 0; y < this.rows; y++) {
@@ -109,7 +109,7 @@ class LifeGame {
             this.setField(x, y, 1)
         }
     }
-
+*/
     //функція вищого порядка, для кожного живого елемента
     forFreeEach (hander) {
         for (let y = 0; y < this.rows; y++) {
