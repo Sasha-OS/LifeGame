@@ -9,11 +9,12 @@ class LifeGame {
             const row = []
 
             for (let x = 0; x < this.columns; x++) {
-                row.push(false)
+                row.push(0)
             }
 
             this.map.push(row)
         }
+        //console.log(this.map)
     }
 
     changeGeneration () {
@@ -24,7 +25,7 @@ class LifeGame {
             
             for (let x = 0; x < this.columns; x++) {
                 let neighborsNumber = 0
-                let state = false
+                let state = 0
                 
                 for (let dx = -1; dx <= 1; dx++) {
                     for (let dy = -1; dy <= 1; dy++) {
@@ -37,15 +38,15 @@ class LifeGame {
                     }
                 }
                 // перевірка на стан
-                if (this.getField(x, y) === true) {
+                if (this.getField(x, y) === 1) {
                     if (neighborsNumber === 2 || neighborsNumber === 3) {
-                        state = true
+                        state = 1
                     }
                 }
 
                 else {
                     if (neighborsNumber === 3) {
-                        state = true
+                        state = 1
                     }
                 }
 
@@ -66,7 +67,7 @@ class LifeGame {
 
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.columns; x++) {
-                if (this.getField(x, y) === false) {
+                if (this.getField(x, y) === 0) {
                     freeFields.push({ x, y })
                 }
             }
@@ -81,14 +82,39 @@ class LifeGame {
             //const fieldv = freeFields.splice(index, 1)[0]
             //this.setField(field.x, field.y, true)
             const { x, y } = freeFields.splice(index, 1)[0]
-            this.setField(x, y, true)
+            this.setField(x, y, 1)
         }
     }
-    //функція вищого порядка для кожного живого елемента
+
+    /*reviveRandomVirus (n = 1) {
+        const freeFields = []
+
+        for (let y = 0; y < this.rows; y++) {
+            for (let x = 0; x < this.columns; x++) {
+                if (this.getField(x, y) === 0) {
+                    freeFields.push({ x, y })
+                }
+            }
+        }
+
+        n = parseInt(n)
+        n = Math.min(n, freeFields.length) // для уникання безкінечної кількості ітерацій
+
+        while (n-- > 0) {
+            // беру випадкову клітину і оживляю
+            const index = Math.floor(Math.random() * freeFields.length)
+            //const fieldv = freeFields.splice(index, 1)[0]
+            //this.setField(field.x, field.y, true)
+            const { x, y } = freeFields.splice(index, 1)[0]
+            this.setField(x, y, 1)
+        }
+    }
+*/
+    //функція вищого порядка, для кожного живого елемента
     forFreeEach (hander) {
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.columns; x++) {
-                if (this.getField(x, y) === true) {
+                if (this.getField(x, y) === 1) {
                     hander(x, y)
                 }
             }
