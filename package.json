@@ -1,0 +1,22 @@
+{
+  "name": "lifegame",
+  "version": "1.0.0",
+  "description": "Kyrsach",
+  "main": "script.js",
+  "scripts": {
+    "test": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sasha-OS/LifeGame.git"
+  },
+  "author": "Aleksandr Gribiniuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sasha-OS/LifeGame/issues"
+  },
+  "homepage": "https://github.com/Sasha-OS/LifeGame#readme",
+  "dependencies": {
+    "metasync": "^0.3.31"
+  }
+}

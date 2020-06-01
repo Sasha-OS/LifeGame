@@ -3,6 +3,7 @@ const ROWS_NUMBER = 100
 const COLUMNS_NUMBER = 100
 const BACKGROUND_COLOR = 'black'
 const FIELD_COLOR = 'yellow'
+const VIRUS_COLOR = 'red'
 const GENERATION_TIME = 0
 
 const canvas = document.querySelector('canvas')
@@ -29,7 +30,7 @@ function tick (timestamp) {
         lifeGame.changeGeneration()
     }
     
-    lifeGame.forFreeEach((x, y) => drawField(x, y, FIELD_COLOR))
+    lifeGame.forAlive((x, y) => drawField(x, y, FIELD_COLOR, VIRUS_COLOR))
 
     requestAnimationFrame(tick)
 }
@@ -41,7 +42,7 @@ function clearCanvas () {
     context.fill()
 }
 
-function drawField (x, y, color) {
+function drawField (x, y, color, viruscolor) {
     context.fillStyle = color
     context.beginPath()
     context.rect(x * FIELD_SIZE, y * FIELD_SIZE, FIELD_SIZE, FIELD_SIZE)

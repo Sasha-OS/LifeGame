@@ -111,7 +111,7 @@ class LifeGame {
     }
 */
     //функція вищого порядка, для кожного живого елемента
-    forFreeEach (hander) {
+    forAlive (hander) {
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.columns; x++) {
                 if (this.getField(x, y) === 1) {
