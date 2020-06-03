@@ -15,7 +15,7 @@ class LifeGame {
             this.map.push(row)
         }
         //console.log(this.map)
-    }
+    } 
 
     changeGeneration () {
         const map = []
