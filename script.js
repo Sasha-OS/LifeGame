@@ -42,7 +42,7 @@ function clearCanvas () {
     context.fill()
 }
 
-function drawField (x, y, color, viruscolor) {
+function drawField (x, y, color) {
     context.fillStyle = color
     context.beginPath()
     context.rect(x * FIELD_SIZE, y * FIELD_SIZE, FIELD_SIZE, FIELD_SIZE)
