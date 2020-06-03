@@ -20,6 +20,7 @@
     "metasync": "^0.3.31"
   },
   "devDependencies": {
+    "@kadira/storybook": "^2.35.3",
     "@typescript-eslint/eslint-plugin": "^3.1.0",
     "@typescript-eslint/parser": "^3.1.0",
     "eslint": "^7.1.0",
