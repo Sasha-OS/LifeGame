@@ -7,7 +7,7 @@ requiring no further input. One interacts with the Game of Life by creating an i
 and observing how it evolves. It is Turing complete and can simulate a universal 
 constructor or any other Turing machine.
 
-Rules
+# Rules
 The universe of the Game of Life is an infinite, 
 two-dimensional orthogonal grid of square cells, 
 each of which is in one of two possible states, live or dead, (or populated and unpopulated, respectively). 
@@ -28,3 +28,12 @@ applying the above rules simultaneously to every cell in the seed; births and de
 and the discrete moment at which this happens is sometimes called a tick. 
 Each generation is a pure function of the preceding one. 
 The rules continue to be applied repeatedly to create further generations.
+
+# Requirements
+Node.js v12.5.0 or later (v12.16.0 preferred)
+
+# Help
+Ask questions at https://t.me/nodeua and post issues on github.
+
+# License
+Copyright (c) 2020 Sasha-OS. This starter kit is MIT licensed.
