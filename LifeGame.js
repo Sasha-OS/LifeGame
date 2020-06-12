@@ -3,7 +3,7 @@ class LifeGame {
         this.rows = rows
         this.columns = columns
         this.generationNumber = 0
-// заповнення матриці пустими елементами(false)
+// заповнення матриці пустими елементами(0)
         this.map = [] // карта
         for (let y = 0; y < this.rows; y++) {
             const row = []
@@ -14,8 +14,7 @@ class LifeGame {
 
             this.map.push(row)
         }
-        //console.log(this.map)
-    } 
+    }
 
     changeGeneration () {
         const map = []
@@ -25,7 +24,7 @@ class LifeGame {
             
             for (let x = 0; x < this.columns; x++) {
                 let neighborsNumber = 0
-                let state = 0
+                let state = false
                 
                 for (let dx = -1; dx <= 1; dx++) {
                     for (let dy = -1; dy <= 1; dy++) {
@@ -79,39 +78,12 @@ class LifeGame {
         while (n-- > 0) {
             // беру випадкову клітину і оживляю
             const index = Math.floor(Math.random() * freeFields.length)
-            //const fieldv = freeFields.splice(index, 1)[0]
-            //this.setField(field.x, field.y, true)
             const { x, y } = freeFields.splice(index, 1)[0]
             this.setField(x, y, 1)
         }
     }
-
-    /*reviveRandomVirus (n = 1) {
-        const freeFields = []
-
-        for (let y = 0; y < this.rows; y++) {
-            for (let x = 0; x < this.columns; x++) {
-                if (this.getField(x, y) === 0) {
-                    freeFields.push({ x, y })
-                }
-            }
-        }
-
-        n = parseInt(n)
-        n = Math.min(n, freeFields.length) // для уникання безкінечної кількості ітерацій
-
-        while (n-- > 0) {
-            // беру випадкову клітину і оживляю
-            const index = Math.floor(Math.random() * freeFields.length)
-            //const fieldv = freeFields.splice(index, 1)[0]
-            //this.setField(field.x, field.y, true)
-            const { x, y } = freeFields.splice(index, 1)[0]
-            this.setField(x, y, 1)
-        }
-    }
-*/
     //функція вищого порядка, для кожного живого елемента
-    forAlive (hander) {
+    forFreeEach (hander) {
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.columns; x++) {
                 if (this.getField(x, y) === 1) {
