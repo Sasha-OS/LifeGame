@@ -36,4 +36,4 @@ Node.js v12.5.0 or later (v12.16.0 preferred)
 Ask questions at https://t.me/nodeua and post issues on github.
 
 # License
-Copyright (c) 2020 Sasha-OS. This starter kit is MIT licensed.
+Copyright (c) 2020 Alexander Gribinyuk. This starter kit is MIT licensed.
