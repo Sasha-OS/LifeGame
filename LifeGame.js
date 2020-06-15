@@ -100,4 +100,4 @@ class LifeGame {
     return true;
   }
 }
-console.log(LifeGame);
+//module.exports = LifeGame;
