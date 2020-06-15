@@ -1,37 +1,37 @@
-const FIELD_SIZE = 8
-const ROWS_NUMBER = 100
-const COLUMNS_NUMBER = 100
-const BACKGROUND_COLOR = 'black'
-const FIELD_COLOR = 'yellow'
-const GENERATION_TIME = 0
+const FIELD_SIZE = 8;
+const ROWS_NUMBER = 100;
+const COLUMNS_NUMBER = 100;
+const BACKGROUND_COLOR = 'black';
+const FIELD_COLOR = 'yellow';
+const GENERATION_TIME = 0;
 
-const canvas = document.querySelector('canvas')
-const context = canvas.getContext('2d')
+const canvas = document.querySelector('canvas');
+const context = canvas.getContext('2d');
 
-const lifeGame = new LifeGame(ROWS_NUMBER, COLUMNS_NUMBER)
+const lifeGame = new LifeGame(ROWS_NUMBER, COLUMNS_NUMBER);
 
-start()
+start();
 
 function start () {
-    canvas.width = FIELD_SIZE * COLUMNS_NUMBER
-    canvas.height = FIELD_SIZE * ROWS_NUMBER
+    canvas.width = FIELD_SIZE * COLUMNS_NUMBER;
+    canvas.height = FIELD_SIZE * ROWS_NUMBER;
 
-    lifeGame.reviveRandomFields(ROWS_NUMBER * COLUMNS_NUMBER / 2)
+    lifeGame.reviveRandomFields(ROWS_NUMBER * COLUMNS_NUMBER / 2);
     //регеструє виклик функції tick 
-    requestAnimationFrame(tick)
+    requestAnimationFrame(tick);
 }
 
 //стираємо і малюємо дуже швидко
 function tick (timestamp) {
-    clearCanvas()
+    clearCanvas();
     //якшо прийшов час змінити покоління
     if (timestamp > lifeGame.generationNumber * GENERATION_TIME) {
-        lifeGame.changeGeneration()
+        lifeGame.changeGeneration();
     }
     
-    lifeGame.forFreeEach((x, y) => drawField(x, y, FIELD_COLOR))
+    lifeGame.forFreeEach((x, y) => drawField(x, y, FIELD_COLOR));
 
-    requestAnimationFrame(tick)
+    requestAnimationFrame(tick);
 }
 
 function clearCanvas () {
