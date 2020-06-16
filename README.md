@@ -29,9 +29,6 @@ and the discrete moment at which this happens is sometimes called a tick.
 Each generation is a pure function of the preceding one. 
 The rules continue to be applied repeatedly to create further generations.
 
-# Requirements
-Node.js v12.5.0 or later (v12.16.0 preferred)
-
 # Help
 Ask questions at https://t.me/nodeua and post issues on github.
 

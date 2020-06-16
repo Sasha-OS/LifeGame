@@ -13,6 +13,7 @@ const context = canvas.getContext('2d');
 /* global LifeGame */
 const lifeGame = new LifeGame(ROWS_NUMBER, COLUMNS_NUMBER);
 
+
 start();
 
 function start() {
