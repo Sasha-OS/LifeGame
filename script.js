@@ -1,5 +1,5 @@
 'use strict';
-//const LifeGame = require('./Desctop/LifeGame');
+//const LifeGame = require('./Desctop/LifeGame.js');
 const FIELD_SIZE = 8;
 const ROWS_NUMBER = 100;
 const COLUMNS_NUMBER = 100;

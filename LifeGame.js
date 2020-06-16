@@ -101,3 +101,4 @@ class LifeGame {
   }
 }
 //module.exports = LifeGame;
+console.log(LifeGame);
