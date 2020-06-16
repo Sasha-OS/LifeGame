@@ -10,6 +10,7 @@ const GENERATION_TIME = 0;
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 
+/* global LifeGame */
 const lifeGame = new LifeGame(ROWS_NUMBER, COLUMNS_NUMBER);
 
 start();
