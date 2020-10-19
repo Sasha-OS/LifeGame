@@ -1,0 +1,19 @@
+{
+  "name": "testgame",
+  "version": "1.0.0",
+  "description": "Kyrsach",
+  "main": "LifeGame.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sasha-OS/LifeGame.git"
+  },
+  "author": "Alekdandr Gribiniuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sasha-OS/LifeGame/issues"
+  },
+  "homepage": "https://github.com/Sasha-OS/LifeGame#readme"
+}
